@@ -1,6 +1,7 @@
 ###############################################################################
 # https://github.com/alexkaratarakis/gitattributes
 # Set default behavior to automatically normalize line endings.
+###############################################################################
 *       text=auto eol=lf
 # Libraries
 *.so    -text merge=binary
