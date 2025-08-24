@@ -1,0 +1,18 @@
+---
+Checks: '-*,
+         modernize-*,
+         performance-*,
+         google-*,
+         cppcoreguidelines-*,
+         bugprone-*,
+         readability-identifier-*,
+         -bugprone-exception-escape,
+         -bugprone-easily-swappable-parameters,
+         -modernize-use-trailing-return-type'
+
+HeaderFilterRegex: '^.*(src/).*$'
+ExcludeHeaderFilterRegex: '^(build/).*$'
+# AnalyzeTemporaryDtors: false
+WarningsAsErrors: ''
+FormatStyle: file
+...

@@ -1,0 +1,112 @@
+{
+  "$schema": "https://cmake.org/cmake/help/v3.28/_downloads/3e2d73bff478d88a7de0de736ba5e361/schema.json",
+  "version": 8,
+  "include": [],
+  "configurePresets": [
+    {
+      "name": "shared-common",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "build/${presetName}",
+      "installDir": "build/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
+      }
+    },
+    {
+      "name": "nilrt-cross-compile-toolchain",
+      "toolchainFile": "cmake/NilrtCrossCompileToolchain.cmake",
+      "hidden": true
+    },
+    {
+      "name": "native-compiler",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "/usr/bin/gcc",
+        "CMAKE_CXX_COMPILER": "/usr/bin/g++"
+      }
+    },
+    {
+      "name": "debug-cross-compile",
+      "displayName": "Debug (cross-compile)",
+      "inherits": [
+        "shared-common",
+        "nilrt-cross-compile-toolchain"
+      ],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "release-cross-compile",
+      "displayName": "Release (cross-compile)",
+      "inherits": [
+        "shared-common",
+        "nilrt-cross-compile-toolchain"
+      ],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "debug",
+      "displayName": "Debug",
+      "inherits": [
+        "shared-common",
+        "native-compiler"
+      ],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "release",
+      "displayName": "Release",
+      "inherits": [
+        "shared-common",
+        "native-compiler"
+      ],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "debug-cross-compile",
+      "displayName": "Debug (cross-compile)",
+      "configurePreset": "debug-cross-compile",
+      "configuration": "Debug",
+      "targets": [
+        "all"
+      ]
+    },
+    {
+      "name": "release-cross-compile",
+      "displayName": "Release (cross-compile)",
+      "configurePreset": "release-cross-compile",
+      "configuration": "Release",
+      "targets": [
+        "all"
+      ]
+    },
+    {
+      "name": "debug",
+      "displayName": "Debug",
+      "configurePreset": "debug",
+      "configuration": "Debug",
+      "targets": [
+        "all"
+      ]
+    },
+    {
+      "name": "release",
+      "displayName": "Release",
+      "configurePreset": "release",
+      "configuration": "Release",
+      "targets": [
+        "all"
+      ]
+    }
+  ]
+}
